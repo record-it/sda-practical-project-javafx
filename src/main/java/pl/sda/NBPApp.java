@@ -9,7 +9,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.converter.DoubleStringConverter;
-import pl.sda.api.lib.ApiGenericRepository;
+import pl.sda.api.lib.APISimpleGenericRepository;
+import pl.sda.api.lib.ApiPagingGenericRepository;
+import pl.sda.api.lib.GenericSimpleRepository;
 import pl.sda.domain.Rate;
 import pl.sda.domain.Table;
 
@@ -22,7 +24,7 @@ import java.net.URI;
  */
 public class NBPApp extends Application {
     public URI BASE = URI.create("http://api.nbp.pl/api/exchangerates/tables/A/2021-10-15/?format=json");
-    public ApiGenericRepository<Table[]> currency = new ApiGenericRepository<>(Table[].class);
+    public GenericSimpleRepository<Table[]> currency = new APISimpleGenericRepository<>(Table[].class);
     public VBox root;
     public Tab currencyCalculator;
     public Tab starWarsCollection = new Tab("Star Wars");
@@ -80,8 +82,8 @@ public class NBPApp extends Application {
             }
         }));
         currencyValue.getEditor().setAlignment(Pos.CENTER_RIGHT);
-        sourceCurrencyCombo.getItems().addAll(currency.get(BASE).get()[0].getRates());
-        targetCurrencyCombo.getItems().addAll(currency.get(BASE).get()[0].getRates());
+        sourceCurrencyCombo.getItems().addAll(currency.findByURI(BASE).get()[0].getRates());
+        targetCurrencyCombo.getItems().addAll(currency.findByURI(BASE).get()[0].getRates());
         sourceCurrencyCombo.setMinWidth(300);
         targetCurrencyCombo.setMinWidth(300);
         currencyValue.setMaxWidth(300);

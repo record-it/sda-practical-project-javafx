@@ -1,7 +1,7 @@
 package pl.sda.api.swapi.repository;
 
 import lombok.extern.slf4j.Slf4j;
-import pl.sda.api.lib.ApiGenericRepository;
+import pl.sda.api.lib.ApiPagingGenericRepository;
 import pl.sda.api.swapi.config.PageConfiguration;
 import pl.sda.api.swapi.config.Resource;
 
@@ -11,10 +11,10 @@ import java.util.Optional;
 
 @Slf4j
 public class SWAPIGenericRepository<T> implements SWAPIRepository<T> {
-    private final ApiGenericRepository<T> respository;
+    private final ApiPagingGenericRepository<T> respository;
 
     public SWAPIGenericRepository(Resource resource) {
-        this.respository = new ApiGenericRepository<T>(resource.getClazz(), resource.toURI(), PageConfiguration.RESULTS_FIELD, PageConfiguration.PREVIOUS_FIELD, PageConfiguration.NEXT_FIELD);
+        this.respository = new ApiPagingGenericRepository<T>(resource.getClazz(), resource.toURI(), PageConfiguration.RESULTS_FIELD, PageConfiguration.PREVIOUS_FIELD, PageConfiguration.NEXT_FIELD);
     }
 
     @Override

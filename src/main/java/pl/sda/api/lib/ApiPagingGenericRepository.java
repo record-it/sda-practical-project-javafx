@@ -5,20 +5,20 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-public class ApiGenericRepository<T> extends ApiRepository<T> implements GenericRepository<T> {
+public class ApiPagingGenericRepository<T> extends ApiRepository<T> implements GenericPagingRepository<T> {
     private final URI baseUri;
     private final String resultField;
     private final String nextField;
     private final String previousField;
 
-    public ApiGenericRepository(Class<T> modelClazz, URI baseUri, String resultField, String nextField, String previousField) {
+    public ApiPagingGenericRepository(Class<T> modelClazz, URI baseUri, String resultField, String nextField, String previousField) {
         super(modelClazz);
         this.baseUri = baseUri;
         this.resultField = resultField;
         this.nextField = nextField;
         this.previousField = previousField;
     }
-    public ApiGenericRepository(Class<T> modelClazz) {
+    public ApiPagingGenericRepository(Class<T> modelClazz) {
         super(modelClazz);
         this.baseUri = null;
         this.resultField = null;
