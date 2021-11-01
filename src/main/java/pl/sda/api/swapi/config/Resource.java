@@ -4,7 +4,7 @@ import pl.sda.api.swapi.model.*;
 
 import java.net.URI;
 
-public enum Resource {
+public enum Resource{
     PLANETS(Planet.class),
     FILMS(Film.class),
     PEOPLE(Person.class),

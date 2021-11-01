@@ -1,7 +1,0 @@
-package pl.sda.api.swapi.error;
-
-public class NetworkException extends RuntimeException{
-    public NetworkException(String message) {
-        super(message);
-    }
-}

@@ -8,8 +8,7 @@ module pl.sda {
     requires org.apache.logging.log4j.core;
     requires org.slf4j;
     requires com.fasterxml.jackson.annotation;
-    opens pl.sda;
-    opens pl.sda.domain;
+    opens pl.sda.api;
     opens pl.sda.api.swapi.repository;
     opens pl.sda.api.swapi.model;
 }
