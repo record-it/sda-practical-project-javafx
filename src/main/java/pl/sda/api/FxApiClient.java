@@ -19,18 +19,11 @@ import java.util.Optional;
 
 public class FxApiClient extends Application {
     public VBox root = new VBox();
-    public SWAPIRepository<Person> films = new SWAPIGenericRepository<>(Resource.PEOPLE);
+    //public SWAPIRepository<Person> films = new SWAPIGenericRepository<>(Resource.PEOPLE);
 
     @Override
     public void start(Stage stage) throws Exception {
-        final Optional<Person> optionalFilm = films.findById(6);
-        Label label = new Label();
-        if (optionalFilm.isEmpty()){
-            label.setText("Film not found!");
-        } else {
-            Person item = optionalFilm.get();
-            label.setText("Name " + item.getName() + ", count of films: " + item.getFilms().size() );
-        }
+        Label label = new Label("Hello from JavaFx!");
         root.setAlignment(Pos.CENTER);
         root.getChildren().add(label);
         Scene scene = new Scene(root, 400,300);
