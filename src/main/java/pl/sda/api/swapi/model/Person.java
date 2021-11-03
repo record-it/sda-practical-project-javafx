@@ -3,6 +3,7 @@ import lombok.Data;
 import java.util.List;
 @Data
 public class Person {
+    private String url;
     private String name;
     private String birth_year;
     private String eye_color;
@@ -16,7 +17,6 @@ public class Person {
     private List<String> species;
     private List<String> starships;
     private List<String> vehicles;
-    private String url;
     private String created;
     private String edited;
 }
