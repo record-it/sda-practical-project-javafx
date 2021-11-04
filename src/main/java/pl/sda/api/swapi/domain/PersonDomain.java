@@ -1,12 +1,24 @@
 package pl.sda.api.swapi.domain;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
-@Data
+import java.util.List;
+
+@Getter
 @Builder
+@ToString
+@EqualsAndHashCode
 public class PersonDomain {
-    private String name;
-    private int height;
-    private int mass;
+    private final String name;
+    private final Integer height;
+    private final Double mass;
+    private final List<FilmDomain> films;
+
+    public boolean isKnownHeight(){
+        return height != null;
+    }
+
+    public boolean isKnownMass(){
+        return  mass != null;
+    }
 }
