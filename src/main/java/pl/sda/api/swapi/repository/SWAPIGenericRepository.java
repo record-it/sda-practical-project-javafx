@@ -1,7 +1,7 @@
 package pl.sda.api.swapi.repository;
 
 import lombok.extern.slf4j.Slf4j;
-import pl.sda.api.lib.ApiPagingGenericRepository;
+import lib.ApiPagingGenericRepository;
 import pl.sda.api.swapi.config.PageConfiguration;
 import pl.sda.api.swapi.config.Resource;
 
