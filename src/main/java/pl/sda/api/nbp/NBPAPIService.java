@@ -4,6 +4,7 @@ import pl.sda.api.lib.APISimpleGenericRepository;
 import pl.sda.api.lib.GenericSimpleRepository;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URI;
 import java.util.Collections;
 import java.util.List;
@@ -28,6 +29,8 @@ public class NBPAPIService implements NBPService{
             //2. Jeśli jest to wyciągnij z optionala tablicę
             //3. W tablicy odwołaj się do pierwszej komórki
             //4. Z obiektu z pierwszej komórki zwróć pole rates
+//            return optionalCurrencyTables.filter(table -> table.length == 1)
+//                    .map(table -> table[0].getRates()).orElse(Collections.emptyList());
             if (optionalCurrencyTables.isPresent()){
                 final CurrencyTable[] currencyTables = optionalCurrencyTables.get();
                 if (currencyTables.length == 1){

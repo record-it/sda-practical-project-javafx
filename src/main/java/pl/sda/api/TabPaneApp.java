@@ -7,7 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.util.converter.DoubleStringConverter;
 import pl.sda.api.nbp.NBPAPIService;
 import pl.sda.api.nbp.NBPService;
 import pl.sda.api.nbp.Rate;
@@ -86,14 +88,42 @@ public class TabPaneApp extends Application {
         sourceCurrency.getItems().addAll(rates);
         targetCurrency.getItems().addAll(rates);
         amount.setEditable(true);
+        amount.getEditor().setTextFormatter(
+                new TextFormatter<Double>( new DoubleStringConverter(),0.0, change -> {
+                    try {
+                        Double.parseDouble(change.getControlNewText());
+                        return change;
+                    } catch (NumberFormatException e) {
+                        return null;
+                    }
+                } )
+        );
         amount.getEditor().setOnAction(event -> {
-            final double result = nbpService.calculate(
-                    sourceCurrency.getSelectionModel().getSelectedItem(),
-                    amount.getValue(),
-                    targetCurrency.getSelectionModel().getSelectedItem()
-            );
-            rateResult.setText(String.format("%.2f", result));
+            calculateCurrencyExchangeRate();
         });
+        amount.getEditor().setFont(Font.font("Lato", 34));
+        rateResult.setFont(Font.font("Courier New", 34));
+        amount.getEditor().setAlignment(Pos.CENTER_RIGHT);
+        amount.valueProperty().addListener((e, m, o) -> {
+            calculateCurrencyExchangeRate();
+        });
+        sourceCurrency.setOnAction(event -> {
+            calculateCurrencyExchangeRate();
+        });
+        targetCurrency.setOnAction(event -> {
+            calculateCurrencyExchangeRate();
+        });
+        sourceCurrency.getSelectionModel().selectFirst();
+        targetCurrency.getSelectionModel().selectLast();
+    }
+
+    private void calculateCurrencyExchangeRate() {
+        final double result = nbpService.calculate(
+                sourceCurrency.getSelectionModel().getSelectedItem(),
+                amount.getValue(),
+                targetCurrency.getSelectionModel().getSelectedItem()
+        );
+        rateResult.setText(String.format("%.2f", result));
     }
 
     private void calculate() {
