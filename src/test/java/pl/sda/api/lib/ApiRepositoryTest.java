@@ -1,6 +1,5 @@
 package pl.sda.api.lib;
 
-import lib.ApiRepository;
 import org.junit.jupiter.api.Test;
 import pl.sda.api.swapi.model.Film;
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package lib;
+package pl.sda.api.lib;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JavaType;

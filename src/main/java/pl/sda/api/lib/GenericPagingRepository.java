@@ -1,4 +1,4 @@
-package lib;
+package pl.sda.api.lib;
 
 import java.io.IOException;
 import java.util.List;

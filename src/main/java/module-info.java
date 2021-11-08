@@ -12,4 +12,5 @@ module pl.sda {
     opens pl.sda.api.swapi.repository;
     opens pl.sda.api.swapi.model;
     exports pl.sda.api.swapi.model;
+    opens pl.sda.api.nbp;
 }

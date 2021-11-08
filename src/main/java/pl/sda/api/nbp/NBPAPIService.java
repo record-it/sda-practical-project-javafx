@@ -1,7 +1,7 @@
-package nbp;
+package pl.sda.api.nbp;
 
-import lib.APISimpleGenericRepository;
-import lib.GenericSimpleRepository;
+import pl.sda.api.lib.APISimpleGenericRepository;
+import pl.sda.api.lib.GenericSimpleRepository;
 
 import java.io.IOException;
 import java.net.URI;
@@ -39,7 +39,8 @@ public class NBPAPIService implements NBPService{
             } else {
                 return Collections.emptyList();
             }
-        } catch (Exception e) {
+        } catch (IOException | InterruptedException e) {
+            System.err.println(e.getMessage());
             throw new ApiConnectionException("Problem z połączeniem z serwisem NBP");
         }
     }

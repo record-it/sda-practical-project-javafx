@@ -8,10 +8,11 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import nbp.NBPAPIService;
-import nbp.NBPService;
-import nbp.Rate;
+import pl.sda.api.nbp.NBPAPIService;
+import pl.sda.api.nbp.NBPService;
+import pl.sda.api.nbp.Rate;
 
+import java.io.IOException;
 import java.util.List;
 
 public class TabPaneApp extends Application {
@@ -41,7 +42,6 @@ public class TabPaneApp extends Application {
             new Spinner<>(new SpinnerValueFactory.DoubleSpinnerValueFactory(0, 1_000_000, 1));
 
 
-
     @Override
     public void start(Stage stage) throws Exception {
         tabPane.getTabs().addAll(tabCalculator, tabForm, tabCurrency);
@@ -69,7 +69,7 @@ public class TabPaneApp extends Application {
         });
     }
 
-    public void createTabCurrencyCalculator(){
+    public void createTabCurrencyCalculator() throws IOException, InterruptedException {
         //dodaj do content tabCurrency currencyRoot
         tabCurrency.setContent(currencyRoot);
         //do rootCurrency dodaj kolejno (wg własnego uznania)

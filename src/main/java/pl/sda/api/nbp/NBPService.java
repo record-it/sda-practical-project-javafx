@@ -1,4 +1,4 @@
-package nbp;
+package pl.sda.api.nbp;
 
 import java.io.IOException;
 import java.util.List;
