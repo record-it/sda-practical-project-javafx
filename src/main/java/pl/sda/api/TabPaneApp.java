@@ -85,6 +85,15 @@ public class TabPaneApp extends Application {
         final List<Rate> rates = nbpService.getRates();
         sourceCurrency.getItems().addAll(rates);
         targetCurrency.getItems().addAll(rates);
+        amount.setEditable(true);
+        amount.getEditor().setOnAction(event -> {
+            final double result = nbpService.calculate(
+                    sourceCurrency.getSelectionModel().getSelectedItem(),
+                    amount.getValue(),
+                    targetCurrency.getSelectionModel().getSelectedItem()
+            );
+            rateResult.setText(String.format("%.2f", result));
+        });
     }
 
     private void calculate() {

@@ -15,7 +15,7 @@ public class NBPAPIService implements NBPService{
             new APISimpleGenericRepository<>(CurrencyTable[].class);
     @Override
     public double calculate(Rate sourceRate, double amount, Rate targetRate) {
-        return 0;
+        return sourceRate.getMid() * amount / targetRate.getMid();
     }
 
     @Override
@@ -32,6 +32,13 @@ public class NBPAPIService implements NBPService{
                 final CurrencyTable[] currencyTables = optionalCurrencyTables.get();
                 if (currencyTables.length == 1){
                     final CurrencyTable currencyTable = currencyTables[0];
+                    currencyTable.getRates().add(
+                            Rate.builder()
+                                    .code("PLN")
+                                    .currency("złoty")
+                                    .mid(1)
+                                    .build()
+                    );
                     return  currencyTable.getRates();
                 } else {
                     return Collections.emptyList();
